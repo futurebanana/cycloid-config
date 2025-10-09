@@ -10,7 +10,7 @@ ansible_version: v2.9
 cai_host: ""
 hosts_inventory: all
 hosts_package: pip
-hosts_private_key: ((ssh-cycloid))
+hosts_private_key: ((ssh-cycloid.ssh_key))
 hosts_reboot: false
 hosts_service: ""
 hosts_user: ""
