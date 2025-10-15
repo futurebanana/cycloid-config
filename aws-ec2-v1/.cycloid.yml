@@ -1,13 +1,14 @@
 version: '4'
-name: 'aws-ec2'
-canonical: 'aws-ec2'
-description: 'Deploys one AWS EC2 instance using Terraform.'
+name: 'aws-ec2-v1'
+canonical: 'aws-ec2-v1'
+description: 'Deploys one AWS EC2 instance using Terraform V1.'
 author: 'karstenjakobsen'
 image: 'https://github.com/cycloidio/bootstrap-stacks/blob/master/blank-sample/thumbnail.png'
 template: false
 keywords:
   - terraform
   - provider:aws
+  - version:1
 technologies:
   - technology: terraform
     version: 1.8.3

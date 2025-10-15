@@ -1,0 +1,89 @@
+#!/bin/bash
+set -e
+
+sudo apt-get update && sudo apt-get install -y shellcheck wget curl
+
+# pip3 install -r requirements.txt
+
+# pre-commit install
+
+# Install trivy
+sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+
+# Install minikube
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+
+# Install Kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+rm kubectl.sha256 kubectl
+
+sudo touch /home/vscode/.ssh/known_hosts
+sudo chown vscode:vscode /home/vscode/.ssh/known_hosts
+sudo chmod 644 /home/vscode/.ssh/known_hosts
+
+# Install pyenv
+sudo curl -fsSL https://pyenv.run | bash
+
+cat << 'EOF' >> ~/.zshrc
+
+# Pyenv configuration
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+EOF
+
+# Install github command line tool
+curl -sS https://webi.sh/gh | sh
+
+# echo "Installing pre-commit hooks..."
+# pre-commit install
+
+# echo "Run pre-commit autoupdate..."
+# pre-commit autoupdate
+# pre-commit run --all
+
+ansible-galaxy role install -r requirements.yml
+
+# # Install cycloid cli
+# export os="$(uname -s | tr [:upper:] [:lower:])"; \
+# if [[ "$(uname -m)" == "x86_64" ]]; then export platform=amd64 ; else export platform=arm64 ; fi; \
+#   curl -sLO $(curl -s https://api.github.com/repos/cycloidio/cycloid-cli/releases/latest | jq -r '.assets[] | select(.name=="cy") | .browser_download_url') \
+#     && chmod +x cy \
+#     && sudo mkdir -p /usr/local/bin \
+#     && sudo mv cy /usr/local/bin
+
+# Install DigitalOcean doctl
+wget https://github.com/digitalocean/doctl/releases/download/v1.141.0/doctl-1.141.0-linux-amd64.tar.gz -O ~/doctl-1.141.0-linux-amd64.tar.gz
+tar xf ~/doctl-1.141.0-linux-amd64.tar.gz
+sudo mv ~/doctl /usr/local/bin
+chmod +x /usr/local/bin/doctl
+rm ~/doctl-1.141.0-linux-amd64.tar.gz
+
+cat << 'EOF' >> ~/.zshrc
+
+# cycloid cli
+source <(cy completion zsh)
+EOF
+
+# export env vars from .env file
+# Load .env if present
+# ifneq (,$(wildcard .env))
+# 	include .env
+# 	export
+# endif
+
+# Get SIPp
+wget -O /tmp/sipp https://github.com/SIPp/sipp/releases/download/v3.7.5/sipp
+chmod +x /tmp/sipp
+sudo mv /tmp/sipp /usr/local/bin/sipp
+
+echo "Welcome to the jungle..."

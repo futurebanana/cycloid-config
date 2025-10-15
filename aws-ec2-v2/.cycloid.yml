@@ -1,0 +1,26 @@
+version: '4'
+name: 'aws-ec2-v2'
+canonical: 'aws-ec2-v2'
+description: 'Deploys one AWS EC2 instance using Terraform V2.'
+author: 'karstenjakobsen'
+image: 'https://github.com/cycloidio/bootstrap-stacks/blob/master/blank-sample/thumbnail.png'
+template: false
+keywords:
+  - terraform
+  - provider:aws
+  - version:2
+technologies:
+  - technology: terraform
+    version: 1.8.3
+config:
+  default:
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yml
+      variables:
+        path: pipeline/variables.sample.yml
+        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/pipeline/variables.yml'
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/terraform/main.tf'
