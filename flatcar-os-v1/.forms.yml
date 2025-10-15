@@ -1,8 +1,7 @@
 ---
 version: "2"
 use_cases:
-
-- name: aws
+- name: default
   sections:
   - name: Compute Instance
     groups:
@@ -67,6 +66,8 @@ use_cases:
             - 250
         required: true
 
+- name: aws
+  sections:
   - name: Hosts
     groups:
 
