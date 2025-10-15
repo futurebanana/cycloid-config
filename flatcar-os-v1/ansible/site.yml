@@ -1,0 +1,55 @@
+---
+
+- name: Operations | Bootstrap python to flatcar
+  gather_facts: false
+  hosts: '{{ hosts_inventory }}'
+  become: true
+  vars_files:
+    - "environments/default_operations.yml"
+    - ["environments/operations.yml", "environments/empty.yml"]
+  vars:
+    pypy_version: pypy3.11-v7.3.20-linux64
+
+  tasks:
+
+    - name: Check if python is already installed
+      raw: test -x /opt/bin/python
+      register: python_check
+      failed_when: false
+      ignore_errors: true
+      changed_when: false
+
+    - name: Download pypy archive
+      raw: wget -q -P /opt/ https://downloads.python.org/pypy/{{ pypy_version }}.tar.bz2
+      when:
+        - python_check.rc != 0
+
+    - name: Extract pypy archive
+      raw: tar -xf /opt/{{ pypy_version }}.tar.bz2 -C /opt
+      when:
+        - python_check.rc != 0
+
+    - name: Remove archive
+      raw: rm -rf /opt/{{ pypy_version }}.tar.bz2
+      when:
+        - python_check.rc != 0
+
+    - name: Create /opt/bin for older
+      raw: mkdir -p /opt/bin
+      when:
+        - python_check.rc != 0
+
+    - name: Create symlink for python
+      raw: ln -s  /opt/{{ pypy_version }}/bin/python /opt/bin/python
+      when:
+        - python_check.rc != 0
+
+    - name: Setup pip
+      raw: /opt/bin/python -m ensurepip
+      when:
+        - python_check.rc != 0
+
+    - name: Create symlink for pip
+      raw: ln -s  /opt/{{ pypy_version }}/bin/pip3 /opt/bin/pip
+      when:
+        - python_check.rc != 0

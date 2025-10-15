@@ -1,0 +1,44 @@
+version: '4'
+name: 'flatcar-os-v1'
+canonical: 'flatcar-os-v1'
+description: 'Deploys one Flatcar OS instance on AWS with Terraform and configures it with Ansible.'
+author: 'karstenjakobsen'
+image: 'https://github.com/cycloidio/bootstrap-stacks/blob/master/blank-sample/thumbnail.png'
+template: false
+keywords:
+  - terraform
+  - provider:aws
+  - version:2
+  - ansible
+  - flatcar
+technologies:
+  - technology: terraform
+    version: 1.8.3
+  - technology: ansible
+    version: 2.17.3
+config:
+  default:
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yml
+      variables:
+        path: pipeline/variables.sample.yml
+        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/pipeline/variables.yml'
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/terraform/main.tf'
+  aws:
+    name: 'AWS'
+    description: 'Hosts are targeted with AWS Dynamic Inventory via resource tagging.'
+    cloud_provider: aws
+    pipeline:
+      pipeline:
+        path: 'pipeline/pipeline.yml'
+      variables:
+        path: 'pipeline/variables.sample.yml'
+        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/pipeline/variables.yml'
+    ansible:
+      default:
+        path: 'ansible/environments/operations.yml.sample'
+        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/ansible/environments/operations.yml'
