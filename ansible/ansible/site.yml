@@ -53,8 +53,3 @@
       raw: ln -s  /opt/{{ pypy_version }}/bin/pip3 /opt/bin/pip
       when:
         - python_check.rc != 0
-
-  roles:
-
-    - name: Operations | Set sysctl parameters
-      role: sysctl
