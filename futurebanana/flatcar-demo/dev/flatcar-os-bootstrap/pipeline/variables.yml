@@ -7,17 +7,17 @@
 # due to some limitations upon files' generation.
 #
 ansible_version: v2.9
-aws_access_key: ((aws.access_key))
+aws_access_key: ((aws-kj.access_key))
 aws_cred: ((aws-kj))
 aws_region: eu-west-1
-aws_secret_key: ((aws.secret_key))
+aws_secret_key: ((aws-kj.secret_key))
 cai_host: ""
 flatcar_version: 4230.2.1
-hosts_inventory: ""
+hosts_inventory: tag_cyorg_futurebanana:tag_cypro_flatcar-demo:&tag_cyenv_dev
 hosts_package: ""
-hosts_private_key: ((key_pair.private_key))
+hosts_private_key: ((ssh-ansible.ssh_key))
 hosts_reboot: false
 hosts_service: ""
 hosts_user: ""
-hosts_username: admin
+hosts_username: core
 terraform_version: 1.8.3
