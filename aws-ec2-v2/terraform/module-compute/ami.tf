@@ -23,6 +23,6 @@ data "aws_ami" "flatcar" {
 
   most_recent = true
   
-  # image_id = "ami-0b771457b75195788"
+  # image_id = "ami-0cfb6dafd550274db"
   owners = ["679593333241"] # Flatcar Container Linux by Kinvolk
 }

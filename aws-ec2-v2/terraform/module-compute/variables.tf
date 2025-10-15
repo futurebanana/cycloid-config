@@ -7,6 +7,7 @@ variable "cycom" {}
 # AWS
 variable "aws_region" {
   description = "AWS region where to deploy the resources."
+  default = "eu-west-1"
 }
 
 # Infra
