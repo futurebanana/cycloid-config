@@ -60,3 +60,13 @@ resource "aws_security_group_rule" "ingress-https" {
     from_port         = 443
     to_port           = 443
 }
+
+resource "aws_security_group_rule" "ingress-ssh" {
+    type              = "ingress"
+    description       = "Allow 22/TCP from internet"
+    security_group_id = aws_security_group.ec2.id
+    cidr_blocks       = ["0.0.0.0/0"]
+    protocol          = "tcp"
+    from_port         = 22
+    to_port           = 22
+}
