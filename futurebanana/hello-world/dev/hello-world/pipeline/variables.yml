@@ -7,5 +7,5 @@
 # due to some limitations upon files' generation.
 #
 aws_cred: ((aws-kj))
-aws_region: eu-west-1
+aws_region: eu-central-1
 terraform_version: 1.8.3
