@@ -1,8 +1,8 @@
 # Configuration of the Cycloid stack
 version: '4'
-name: 'ansible'
-canonical: 'ansible'
-description: Run operations such as rebooting VMs, restarting services, installing packages, creating users using Ansible.
+name: 'ansible-bootstrap'
+canonical: 'ansible-bootstrap'
+description: Bootstrap Flatcar OS with Python
 author: 'karstenjakobsen'
 image: 'https://github.com/cycloidio/bootstrap-stacks/blob/master/blank-sample/thumbnail.png'
 template: false
