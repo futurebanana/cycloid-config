@@ -17,17 +17,6 @@ technologies:
   - technology: ansible
     version: 2.17.3
 config:
-  default:
-    pipeline:
-      pipeline:
-        path: pipeline/pipeline.yml
-      variables:
-        path: pipeline/variables.sample.yml
-        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/pipeline/variables.yml'
-    terraform:
-      main:
-        path: 'terraform/main.tf'
-        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/terraform/main.tf'
   aws:
     name: 'AWS'
     description: 'Hosts are targeted with AWS Dynamic Inventory via resource tagging.'
@@ -42,3 +31,7 @@ config:
       default:
         path: 'ansible/environments/operations.yml.sample'
         destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/ansible/environments/operations.yml'
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/terraform/main.tf'
