@@ -8,7 +8,7 @@ resource "aws_instance" "ec2" {
   subnet_id                   = module.vpc.public_subnets[0]
   associate_public_ip_address = true
   disable_api_termination     = false
-  # user_data = file("${path.module}/templates/ignition.json")
+  user_data = file("${path.module}/templates/ignition.json")
   key_name = "kj"
   user_data_replace_on_change = true
 
