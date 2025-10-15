@@ -30,7 +30,7 @@ resources:
   icon: github-circle
   source:
     uri: ($ .scs_url $)
-    branch: ($ .scs_branch $)
+    branch: fb729366c9dea3b77b126f7a2d65eb57861f0a88  # ($ .scs_branch $)
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
