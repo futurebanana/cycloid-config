@@ -22,4 +22,5 @@ module "compute" {
   #. vm_disk_size: 20
   #+ Disk size for the VM (Go)
   vm_disk_size = ""
+
 }

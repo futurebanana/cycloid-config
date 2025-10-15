@@ -1,5 +1,5 @@
 resource "aws_instance" "ec2" {
-  ami           = data.aws_ami.debian.id
+  ami           = data.aws_ami.flatcar.id
   instance_type = var.vm_instance_type
 
   vpc_security_group_ids = [aws_security_group.ec2.id]

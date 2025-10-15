@@ -1,7 +1,9 @@
-data "aws_ami" "debian" {
+data "aws_ami" "flatcar" {
+
+  # create filter using name and var.flatcar_version
   filter {
     name   = "name"
-    values = ["debian-12-amd64-*"]
+    values = ["Flatcar-stable-${var.flatcar_version}-*"]
   }
 
   filter {
@@ -20,5 +22,7 @@ data "aws_ami" "debian" {
   }
 
   most_recent = true
-  owners = ["136693071363"] # Debian
+  
+  # image_id = "ami-0b771457b75195788"
+  owners = ["679593333241"] # Flatcar Container Linux by Kinvolk
 }

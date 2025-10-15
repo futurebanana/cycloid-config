@@ -19,3 +19,8 @@ variable "vm_disk_size" {
   description = "Disk size for the instance (Go)"
   default = "20"
 }
+
+variable "flatcar_version" {
+  description = "Flatcar version to deploy"
+  default     = "4230.2.1"
+}

@@ -29,6 +29,16 @@ use_cases:
         values_ref: https://cycloid-demo-stackforms-values.s3.eu-west-1.amazonaws.com/aws-regions.json
         required: true
 
+      - name: "Flatcar version"
+        description: "Flatcar version to use for the VM."
+        key: flatcar_version
+        widget: slider_list
+        type: string
+        default: "4230.2.1"
+        values:
+            - "4230.2.1"
+        required: true
+
     - name: VM Specs
       technologies: [terraform]
       vars:
