@@ -14,7 +14,7 @@ aws_secret_key: ((aws-kj.secret_key))
 cai_host: ""
 hosts_inventory: tag_cyorg_futurebanana:tag_cypro_flatcar-demo:&tag_cyenv_dev
 hosts_package: ""
-hosts_private_key: ((ssh-ansible))
+hosts_private_key: ((ssh-ansible.ssh_key))
 hosts_reboot: false
 hosts_service: ""
 hosts_user: ""
