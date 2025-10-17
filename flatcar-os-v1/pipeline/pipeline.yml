@@ -28,12 +28,11 @@ resources:
 - name: git_stack-terraform
   type: git
   icon: github-circle
+  version:
+    ref: 8779029ef1ddee761f354411e76101d0aa718731  # V1.0.0
   source:
     uri: ($ .scs_url $)
     branch: ($ .scs_branch $)
-    fetch_tags: true
-    tag_behaviour: match_tagged      # default; only tagged commits are detected
-    tag_filter: v1.0.0               # or use tag_regex for RE2
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
@@ -64,12 +63,11 @@ resources:
 - name: git_stack-ansible
   type: git
   icon: github-circle
+  version:
+    ref: 8779029ef1ddee761f354411e76101d0aa718731  # V1.0.0
   source:
     uri: ($ .scs_url $)
     branch: ($ .scs_branch $)
-    fetch_tags: true
-    tag_behaviour: match_tagged      # default; only tagged commits are detected
-    tag_filter: v1.0.0               # or use tag_regex for RE2
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
