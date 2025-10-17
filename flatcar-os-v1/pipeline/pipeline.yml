@@ -31,7 +31,7 @@ resources:
   source:
     uri: ($ .scs_url $)
     #branch: ($ .scs_branch $)  # ($ .scs_branch $)
-    tag: ((stack_version))  # test 
+    commit: ((stack_version))  # test
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
@@ -65,7 +65,7 @@ resources:
   source:
     uri: ($ .scs_url $)
     #branch: ($ .scs_branch $)
-    tag: ((stack_version))
+    commit: ((stack_version))
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
