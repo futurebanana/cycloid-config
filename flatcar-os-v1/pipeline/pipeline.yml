@@ -65,7 +65,7 @@ resources:
   type: git
   icon: github-circle
   source:
-    uri: ($ .scs_url $),
+    uri: ($ .scs_url $)
     branch: ($ .scs_branch $)
     fetch_tags: true
     tag_behaviour: match_tagged      # default; only tagged commits are detected
