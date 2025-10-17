@@ -30,8 +30,9 @@ resources:
   icon: github-circle
   source:
     uri: ($ .scs_url $)
-    #branch: ($ .scs_branch $)  # ($ .scs_branch $)
-    commit: ((stack_version))  # test
+    branch: hest
+    commit: ((stack_version))
+    tag: ((stack_version))
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
@@ -64,8 +65,9 @@ resources:
   icon: github-circle
   source:
     uri: ($ .scs_url $)
-    #branch: ($ .scs_branch $)
+    branch: hest
     commit: ((stack_version))
+    tag: ((stack_version))
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
