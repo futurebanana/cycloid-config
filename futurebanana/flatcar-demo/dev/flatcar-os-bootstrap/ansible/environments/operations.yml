@@ -1,6 +1,3 @@
 ---
 hosts_inventory: ""
-hosts_reboot: false
-hosts_service: ""
-hosts_package: ""
 hosts_user: ""
