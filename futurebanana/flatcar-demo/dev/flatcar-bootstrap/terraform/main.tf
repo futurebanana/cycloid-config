@@ -16,6 +16,6 @@ module "compute" {
   cyorg            = var.cyorg
   cypro            = var.cypro
   vm_disk_size     = 20
-  vm_instance_type = "t3a.small"
+  vm_instance_type = "t3a.medium"
 }
 
