@@ -31,7 +31,6 @@ resources:
   source:
     uri: ($ .scs_url $)
     branch: ($ .scs_branch $)
-    commit: ((stack_version))  # test
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
@@ -63,8 +62,11 @@ resources:
   type: git
   icon: github-circle
   source:
-    uri: ($ .scs_url $)
-    branch: ((stack_version))
+    uri: ($ .scs_url $),
+    branch: ($ .scs_branch $)
+    fetch_tags: true
+    tag_behaviour: match_tagged
+    tag_filter: 'v1.0.0'
     ($- if eq .scs_cred_type "basic_auth" $)
     username: ((($ .scs_cred_path $).username))
     password: ((($ .scs_cred_path $).password))
