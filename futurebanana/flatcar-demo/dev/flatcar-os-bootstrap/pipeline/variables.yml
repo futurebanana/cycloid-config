@@ -14,7 +14,10 @@ aws_secret_key: ((aws-kj.secret_key))
 cai_host: ""
 flatcar_version: 4230.2.1
 hosts_inventory: tag_cycloid_true
+hosts_package: ""
 hosts_private_key: ((ssh-ansible.ssh_key))
 hosts_reboot: false
+hosts_service: ""
+hosts_user: ""
 hosts_username: core
 terraform_version: 1.8.3
