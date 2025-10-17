@@ -176,6 +176,7 @@ jobs:
           STACK_PATH: ($ .stack_path $)/ansible
 
       - task: run-ansible
+        passed: [deploy]
         config:
           platform: linux
           image_resource:
