@@ -51,40 +51,10 @@ hosts_inventory: ""
 # Hosts Connectivity
 #
 
-#. hosts_username (required): admin
+#. hosts_username (required): core
 #+ The username to connect to via SSH to execute the Ansible playbook.
-hosts_username: admin
+hosts_username: core
 
 #. hosts_private_key (required): ((key_pair.private_key))
 #+ The private SSH key to connect via SSH to execute the Ansible playbook. The Cycloid workers shall be able to connect to targeted hosts via a public IP address.
 hosts_private_key: ((key_pair.private_key))
-
-
-#
-# Operations
-#
-
-#. hosts_reboot (required): false
-#+ Reboot all the targeted hosts.
-hosts_reboot: false
-
-#. hosts_service (required): ""
-#+ A single service to restart on a Linux machine. Supported init systems include BSD init, OpenRC, SysV, Solaris SMF, systemd, upstart.
-hosts_service: ""
-
-#. hosts_package (required): ""
-#+ A single package to install or upgrade on a Debian or Ubuntu OS.
-hosts_package: ""
-
-#. hosts_user (required): ""
-#+ A single user to create.
-hosts_user: ""
-
-
-#
-# Default variables that shouldn't be changed except if needed
-#
-
-#. cycloid-toolkit ansible version (required): 'v2.9'
-#+ cycloid-toolkit docker image tag to use (https://hub.docker.com/r/cycloid/cycloid-toolkit/tags).
-ansible_version: 'v2.9'
