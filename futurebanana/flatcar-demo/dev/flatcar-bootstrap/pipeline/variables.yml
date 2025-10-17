@@ -20,5 +20,5 @@ hosts_reboot: false
 hosts_service: ""
 hosts_user: ""
 hosts_username: ansible
-stack_version: v1.0.0
+stack_version: v0.9.0
 terraform_version: 1.8.3
