@@ -41,23 +41,6 @@ resources:
     paths:
       - ($ .stack_path $)/terraform/*
 
-# The Ansible stack (will be used by the user after deploy)
-- name: git_stack-ansible
-  type: git
-  icon: github-circle
-  source:
-    uri: ($ .scs_url $)
-    branch: ($ .scs_branch $)  # ($ .scs_branch $)
-    ($- if eq .scs_cred_type "basic_auth" $)
-    username: ((($ .scs_cred_path $).username))
-    password: ((($ .scs_cred_path $).password))
-    ($- end $)
-    ($- if eq .scs_cred_type "ssh" $)
-    private_key: ((($ .scs_cred_path $).ssh_key))
-    ($- end $)
-    paths:
-      - ($ .stack_path $)/ansible/*
-
 # The Terraform config (will be merged with the stack)
 - name: git_config-terraform
   type: git
@@ -75,7 +58,22 @@ resources:
     paths:
       - ($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/terraform/*
 
-# The Ansible config (will be used by the user after deploy)
+- name: git_stack-ansible
+  type: git
+  icon: github-circle
+  source:
+    uri: ($ .scs_url $)
+    branch: ($ .scs_branch $)
+    ($- if eq .scs_cred_type "basic_auth" $)
+    username: ((($ .scs_cred_path $).username))
+    password: ((($ .scs_cred_path $).password))
+    ($- end $)
+    ($- if eq .scs_cred_type "ssh" $)
+    private_key: ((($ .scs_cred_path $).ssh_key))
+    ($- end $)
+    paths:
+      - ($ .stack_path $)/ansible/*
+
 - name: git_config-ansible
   type: git
   icon: github-circle
@@ -90,7 +88,7 @@ resources:
     private_key: ((($ .cr_cred_path $).ssh_key))
     ($- end $)
     paths:
-      - ($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/ansible/*
+      - ($ .organization_canonical $)/($ .project $)/($ .environment $)/($ .component $)/ansible/environments/*
 
 groups:
 
@@ -210,7 +208,6 @@ jobs:
             hosts_service: ((hosts_service))
             hosts_package: ((hosts_package))
             hosts_user: ((hosts_user))
-
 
   - name: destroy
     max_in_flight: 1
