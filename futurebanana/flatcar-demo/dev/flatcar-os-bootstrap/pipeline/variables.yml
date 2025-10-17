@@ -6,11 +6,10 @@
 # Please note that comments in sample files will have been dropped
 # due to some limitations upon files' generation.
 #
-ansible_version: v2.9
-aws_access_key: ((aws-kj.access_key))
+aws_access_key: ((aws.access_key))
 aws_cred: ((aws-kj))
 aws_region: eu-west-1
-aws_secret_key: ((aws-kj.secret_key))
+aws_secret_key: ((aws.secret_key))
 cai_host: ""
 flatcar_version: 4230.2.1
 hosts_inventory: tag_cycloid_true
@@ -19,5 +18,5 @@ hosts_private_key: ((ssh-ansible.ssh_key))
 hosts_reboot: false
 hosts_service: ""
 hosts_user: ""
-hosts_username: core
+hosts_username: ansible
 terraform_version: 1.8.3
