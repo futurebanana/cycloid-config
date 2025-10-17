@@ -42,6 +42,7 @@ resources:
     ($- end $)
     paths:
       - ($ .stack_path $)/terraform/*
+      - ($ .stack_path $)/pipeline/*
 
 # The Terraform config (will be merged with the stack)
 - name: git_config-terraform
@@ -77,6 +78,7 @@ resources:
     ($- end $)
     paths:
       - ($ .stack_path $)/ansible/*
+      - ($ .stack_path $)/pipeline/*
 
 - name: git_config-ansible
   type: git
