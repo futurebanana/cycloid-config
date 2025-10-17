@@ -146,8 +146,6 @@ jobs:
   - name: ansible-playbook
     serial: true
     build_logs_to_retain: 10
-    passed:
-      - deploy
     plan:
       - in_parallel:
         - get: git_stack-ansible
@@ -156,6 +154,8 @@ jobs:
           trigger: true
 
       - task: merge-stack-and-config
+        passed:
+          - deploy
         config:
           platform: linux
           image_resource:
