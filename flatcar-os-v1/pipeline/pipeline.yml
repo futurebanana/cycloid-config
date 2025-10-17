@@ -154,8 +154,6 @@ jobs:
           trigger: true
 
       - task: merge-stack-and-config
-        passed:
-          - deploy
         config:
           platform: linux
           image_resource:
