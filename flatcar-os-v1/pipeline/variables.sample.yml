@@ -1,4 +1,12 @@
 #
+# Stack variables
+#
+
+#. stack_version (required): 'v1.0.0'
+#+ Version of the stack to deploy.
+stack_version: 'v1.0.0'
+
+#
 # Cloud Provider
 #
 
